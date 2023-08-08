@@ -65,7 +65,7 @@ export default class SaleLine {
         let amount: number;
         let remainder: number;
 
-        amount = Math.round((value * taxRate * 100)) / 100;
+        amount =taxRate? Math.round((value *  100 / taxRate)) / 100 : 0;
 
         //Now round up to nearest 5 cents.
         remainder = amount % .5;
