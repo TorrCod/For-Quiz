@@ -77,7 +77,6 @@ export default class SaleLine {
     let amount: number;
     let remainder: number;
     amount = taxRate ? value * (taxRate / 100) : 0;
-    console.log(taxRate);
 
     //Now round up to nearest 5 cents.
     remainder = amount % 0.05;
