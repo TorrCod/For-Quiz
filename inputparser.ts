@@ -16,9 +16,9 @@ export default class InputParser {
         const wordCount = words.length;
 
         // must have at least 4 words
-        if (wordCount > 4) {
-            return null;
-        }
+        // if (wordCount > 4) {
+        //     return null;
+        // }
 
         // get quantity (first word)
         quantity = parseInt(words[0], 10);
@@ -26,7 +26,8 @@ export default class InputParser {
         // get price (last word in input string)
         price = parseFloat(words[wordCount -1]);
 
-        productName = words.splice(1, wordCount).join(' ');
+        productName = words.splice(1, wordCount-3).join(' ');
+        
 
         if (!productName) {
             return null;
