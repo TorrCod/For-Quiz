@@ -11,6 +11,9 @@ export default class Sale {
     let saleLine: SaleLine;
 
     saleLine = InputParser.processInput(inputLine);
+    if (!saleLine) {
+      return false;
+    }
     this._saleLines.push(saleLine);
     this._totalTax += saleLine.tax;
     this._totalValue += saleLine.lineValue;
@@ -40,6 +43,6 @@ export default class Sale {
     output.push(`Sales Taxes: ${numeral(this.tax).format("0,0.00")}`);
     output.push("\n");
     output.push(`Total: ${numeral(this.totalValue).format("0,0.00")}`);
-    return "\nResult\n" + output.join("");
+    return "\nResult:\n" + output.join("");
   }
 }
