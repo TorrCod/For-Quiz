@@ -52,7 +52,11 @@ export default class SaleLine {
 
     // calculate taxable amount
     // ideally should really have a product list and tax rules, but this'll have to do for the exercise.
-    if (
+    if (this.isImported && this.productName.indexOf("box") > -1) {
+      taxRate = 5; //5% regardless for any imported items
+    } else if (this.isImported) {
+      taxRate = 15;
+    } else if (
       this.productName.indexOf("book") > -1 ||
       this.productName.indexOf("tablet") > -1 ||
       this.productName.indexOf("chip") > -1
@@ -61,15 +65,12 @@ export default class SaleLine {
     } else {
       taxRate = 10; //10% base tax or general products
     }
-    if (this.isImported && this.productName.indexOf("box") > -1) {
-      taxRate = 5; //5% regardless for any imported items
-    } else {
-      taxRate = 15;
-    }
 
     this._taxAmount = SaleLine.calculateTax(this.lineValue, taxRate);
     //Add tax to line value
-    this._lineValue += this._taxAmount;
+    this._lineValue = parseFloat(
+      (this._lineValue + this._taxAmount).toFixed(2)
+    );
     return;
   }
 
