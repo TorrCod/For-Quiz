@@ -32,13 +32,14 @@ export default class Sale {
             if (output.length > 0) {
                 output.push('\n');
             }
-            output.push(line.toString());
+            const noCommaLine = line.toString().replace(/,/g, '')
+            output.push(noCommaLine);
         });
         
         output.push('\n');
         output.push(`Sales Taxes: ${numeral(this.tax).format('0,0.00')}`);
         output.push('\n');
         output.push(`Total: ${numeral(this.totalValue).format('0,0.00')}`)
-        return output.join();
+        return '\nResult\n'+output.join('');
     }
 }
